@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Deploy angular app to github pages</title>
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="utf-8">
+  <meta name="description" content="Deploy angular app to github pages. Best way to depoly angular app to ghpages. 
+  Tutorial for deploying angular apps globally for free. Free deploy angular app tutorial">
+  <meta name="keywords" content="Angular, github pages, github, angular-cli-ghpages, Tutorial, Free deploy angular app">
+  <meta name="author" content="Saurabh Rathi">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">AngularApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Tutorial <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#method1">Method 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#method2">Method 2</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        <a  href="mailto:saurabhrathi1908@gmail.com">Connect with Me :)</a>
+      </span>
+    </div>
+  </nav> 
+  <div  class="container" style="padding-top: 90px;">
+              Hi All, here is the tutorial to deploy angular app for free on github pages and access it on any browser.
+              <br/>Before that you can checkout this simple website which i deployed using the method 1 on github pages : 
+              <a href="https://SaurabhRathi.github.io/heroes/" target="_blank">https://SaurabhRathi.github.io/heroes/</a>
+              <br/>Github Repository link : <a href="https://github.com/SaurabhRathi/heroes" target="_blank"> Github Repo</a>.
+              You can give me a star, if you like my work :)
+
+    <div id="method1" style="margin-top:20px; background-color: #f8f9fa!important;padding: 4% 2%;">
+        <h3> Method 1 (Just 4 steps)</h3>
+        <span >Simplest solution without using angular-cli-ghpages tool or any external tool. </span>
+
+        <h5 style="margin-top: 1%;">Step 1</h5>
+        <h6>Create Github Repository :</h6>
+        <p>Assuming you already have an account on github, create a new repo. Choose your github repo name wisely as it is going to be used to url used to access the webapp
+            in the browser when its live irrespective of your angular project name. The url that gets formed has format : 
+            <b>https://[username].github.io/[reponame]/</b> ( My Website : https://saurabhrathi.github.io/heroes)
+          <br/>The Repository should be marked public. 
+          </p>
+ 
+
+        <h5>Step 2</h5>
+        <h6>Build your Angular App :</h6>
+        <p>
+          We generally use <code> ng build --prod</code> command for an angualr app to generate the static files
+          (all the typescript code gets converted into js files and overall code gets optimized and minified) 
+          which are ready to be deployed on a server that can serve static files (html, css, js). By default, 
+          this deployable static files are generated in the /dist/{project-name}
+          <br/>
+          But here we need to do some changes. We want to generate files in <code>"docs"</code> folder. Because github explicitly gives you option for this folder which you will see later in this tutorial.
+          So, we need to make a small change in the <b>angular.json</b> file and change the <b>outputpath value to “docs/”</b>.
+          Now use the command : <code>ng build --prod --baseHref=” https://username.github.io/respository-name/”</code>
+          <br/>
+          Note that the username and repository name will be your GitHub username and repository name. 
+          Example : <code>ng build --prod --base-href "https://SaurabhRathi.github.io/heroes/"</code>.  
+        </p>
+
+        <h5>Step 3</h5>
+        <h6>Push code to remote repo in github</h6>
+        <p>
+          Use commands : 
+          <br/><code>git remote set origin {your GitHub repository URL}</code> (Need to do this only once).
+          <br/><code>git add .</code>
+          <br/><code>git commit -m "generated deployable code in docs folder"</code>
+          <br/><code>git push origin master</code> (You can use any remote branch, i'm using master branch for this tutorial).
+        </p>
+
+        <h5>Step 4</h5>
+        <h6>Repo settings for github page</h6>
+        <p>
+          Open your github repository in a browser and go to settings. Scroll down to github pages section.
+          <br/>Here it asks for the "Source" of your deployable code (static code). You can set it by selecting the branch and folder to
+          <b>master branch and docs folder</b>. Save the changes.
+        </p>
+        <p>
+          Once this is done, you will see a message that your Website is live on this url :
+          <b>https://username.github.io/respository-name/”</b> (Example : https://SaurabhRathi.github.io/heroes/)
+        </p>
+    </div>
+    <div id="method2" style="padding: 3rem 1.5rem;text-align: center;font-weight: bolder;">
+    
+        There is another method you can use to deploy your Angular app on GitHub Pages — using the angular-cli-ghpages package. 
+        I will update this page with that method in some time.
+
+    </div>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="static/bootstrap.js"></script>
+
+
+</body>
+</html>
+
